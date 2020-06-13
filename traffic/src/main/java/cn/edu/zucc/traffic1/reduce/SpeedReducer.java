@@ -1,6 +1,6 @@
 package cn.edu.zucc.traffic1.reduce;
 
-import cn.edu.zucc.traffic1.bean.SpeedMap;
+import cn.edu.zucc.traffic1.bean.SpeedBean;
 import cn.edu.zucc.traffic1.bean.SpeedResult;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -14,22 +14,22 @@ import java.sql.Timestamp;
  * @date: 2020/6/9 21:27
  * @desc:
  */
-public class SpeedReducer extends Reducer<Text, SpeedMap,Text, SpeedResult> {
+public class SpeedReducer extends Reducer<Text, SpeedBean,Text, SpeedResult> {
 
     SpeedResult speedResult = new SpeedResult();
     Double[] positions = new Double[10];
     Long[] times = new Long[10];
     Text k = new Text();
     @Override
-    protected void reduce(Text key, Iterable<SpeedMap> values, Context context) throws IOException, InterruptedException {
+    protected void reduce(Text key, Iterable<SpeedBean> values, Context context) throws IOException, InterruptedException {
         int count = 0;
 
-        for (SpeedMap val:values){
+        for (SpeedBean val:values){
             if (count < 10){
                 if (count == 0){
                     speedResult.setPosition1(val.getDirection());
                 }
-                if (count == 2){
+                if (count == 1){
                     speedResult.setPosition2(val.getDirection());
                 }
                 Timestamp time = new Timestamp(val.getTime());
