@@ -49,6 +49,6 @@ public class MyFileUtil {
     }
 
     public static void main(String[] args) {
-        copyFile("E:/test/data.txt","E:/test/data1.txt");
+        copyFile("E:/test/flow.txt","E:/test/data1.txt");
     }
 }

@@ -9,6 +9,7 @@ import cn.edu.zucc.traffic1.reduce.SpeedReducer2;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -29,18 +30,18 @@ public class SpeedJob2 {
 
 
             args = new String[]{
-                    "E:\\program\\Hadoop\\traffic\\output\\speed1\\"+i+"\\part-r-00000",
-                    "E:\\program\\Hadoop\\traffic\\output1\\speed1\\"+i,
+                    "E:\\program\\Hadoop\\traffic\\output\\speed\\"+i+"\\part-r-00000",
+                    "E:\\program\\Hadoop\\traffic\\output4\\speed\\"+i,
             };
             Configuration conf = new Configuration();
             Job job = Job.getInstance(conf, "trafficSpeedAvg");
             job.setJarByClass(SpeedJob2.class);
             job.setMapperClass(SpeedMapper2.class);
             job.setReducerClass(SpeedReducer2.class);
-            job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(DoubleWritable.class);
-            job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(DoubleWritable.class);
+            job.setMapOutputKeyClass(IntWritable.class);
+            job.setMapOutputValueClass(Text.class);
+            job.setOutputKeyClass(IntWritable.class);
+            job.setOutputValueClass(Text.class);
             FileInputFormat.addInputPath(job, new Path(args[0]));
             FileOutputFormat.setOutputPath(job, new Path(args[1]));
             System.out.println(job.waitForCompletion(true) + "\n");

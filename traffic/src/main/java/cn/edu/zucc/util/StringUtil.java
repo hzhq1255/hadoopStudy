@@ -1,5 +1,7 @@
 package cn.edu.zucc.util;
 
+import cn.edu.zucc.traffic3.knn.DataBean;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,6 +34,35 @@ public class StringUtil {
             }
         }
         return distance;
+    }
+
+    /**
+     * knn 的欧拉距离
+     */
+    public static double getKnnDistance(DataBean data1, DataBean data2){
+        double dist = 0;
+        dist += Math.pow(data1.getSpeed()-data2.getSpeed(),2.0);
+        int len1 = data1.getTimes().length;
+        int len2 = data2.getTimes().length;
+        if (len1 == len2){
+            for (int i = 0; i < len1; i++){
+                dist += Math.pow(data1.getTimes()[i]-data2.getTimes()[i],2.0);
+            }
+        }
+        int len3 = data1.getPositions().length;
+        int len4 = data2.getPositions().length;
+        if (len3 == len4){
+            for (int i = 0; i < len3; i++){
+                dist += Math.pow(data1.getPositions()[i]-data2.getPositions()[i],2.0);
+            }
+        }
+        return dist;
+    }
+
+    public static double getKnnDistance(String str1,String str2){
+        DataBean data1 = new DataBean(str1);
+        DataBean data2 = new DataBean(str2);
+        return getKnnDistance(data1,data2);
     }
 
     /**

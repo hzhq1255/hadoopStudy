@@ -6,9 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 public class Test2 {
-    public static void main(String[] args) {
-        copyFile();
-    }
+
+
 
     public static void copyFile() {
         File src = new File("G:\\io\\copysrc.doc");
@@ -50,5 +49,12 @@ public class Test2 {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String str1 = "1121.0\t87.03\t0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0\t0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0";
+        String str2 = "2860.0\t100.26\t0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0\t0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0";
+        double distance = StringUtil.getKnnDistance(str1,str2);
+        System.out.println(distance);
     }
 }
