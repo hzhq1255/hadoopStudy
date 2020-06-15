@@ -191,7 +191,7 @@ public class KMeans {
         job.setMapperClass(SortMapper.class);
         job.setReducerClass(SortReducer.class);
         job.setPartitionerClass(KPartitioner.class);
-        job.setNumReduceTasks(6);
+        job.setNumReduceTasks(3);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputKeyClass(Text.class);
         job.setOutputKeyClass(Text.class);

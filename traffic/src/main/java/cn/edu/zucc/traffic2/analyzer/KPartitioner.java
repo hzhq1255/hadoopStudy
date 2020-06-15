@@ -17,15 +17,16 @@ public class KPartitioner extends Partitioner<Text, Text> {
         String[] line = key.toString().split(",");
         String k = line[line.length -1].substring(7,8);
         String e = v+k;
-        switch (e){
-            case "01":return 0;
-            case "02":return 1;
-            case "11":return 2;
-            case "12":return 3;
-            case "21":return 4;
-            case "22":return 5;
-            default:return 6;
-        }
+        return Integer.parseInt(v);
+//        switch (e){
+//            case "01":return 0;
+//            case "02":return 1;
+//            case "11":return 2;
+//            case "12":return 3;
+//            case "21":return 4;
+//            case "22":return 5;
+//            default:return 6;
+//        }
     }
 
     public static void main(String[] args) {
